@@ -1,0 +1,23 @@
+# "org" ensures this Service is used with the correct Serverless Framework Access Key.
+org: jecaicedo
+service: arbolito-navidad-api
+
+provider:
+  name: aws
+  runtime: python3.12
+  region: us-east-1
+
+functions:
+  app:
+    handler: app.main.handler
+    events:
+      - httpApi:
+          path: /arbolito
+          method: get
+
+plugins:
+  - serverless-python-requirements
+
+custom:
+  pythonRequirements:
+    dockerizePip: true
